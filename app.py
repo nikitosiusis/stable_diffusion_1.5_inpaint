@@ -46,6 +46,15 @@ def inference(model_inputs):
     mask = model_inputs.get('mask', None)
     init_image = model_inputs.get('init_image', None)
 
+    with open('./img.png','wb') as img_file:
+        img_file.write(base64.b64decode(init_image))
+
+    with open('./mask.png','wb') as mask_file:
+        mask_file.write(base64.b64decode(mask))
+
+    mask = './mask.png'
+    init_image = './img.png'
+
     extra_kwargs = {}
     if not prompt:
         return {'message': 'No prompt was provided'}
