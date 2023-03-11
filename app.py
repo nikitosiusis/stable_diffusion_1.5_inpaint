@@ -9,8 +9,8 @@ import base64
 from io import BytesIO
 from PIL import Image
 
-model_path = "runwayml/stable-diffusion-v1-5"
-inpainting_model_path = "runwayml/stable-diffusion-inpainting"
+model_path = "stabilityai/stable-diffusion-2-1"
+inpainting_model_path = "stabilityai/stable-diffusion-2-inpainting"
 
 
 def make_scheduler(name, config):

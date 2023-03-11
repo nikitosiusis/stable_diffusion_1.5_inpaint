@@ -2,7 +2,7 @@ import torch
 from diffusers import StableDiffusionInpaintPipeline
 import os
 
-inpainting_model_path = "runwayml/stable-diffusion-inpainting"
+inpainting_model_path = "stabilityai/stable-diffusion-2-inpainting"
 
 
 def download_model():
