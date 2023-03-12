@@ -2,4 +2,5 @@ sanic==22.6.2
 torch
 diffusers[torch]
 scipy
+pillow
 git+https://github.com/huggingface/transformers.git
