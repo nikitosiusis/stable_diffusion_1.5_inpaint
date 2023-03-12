@@ -46,14 +46,8 @@ def inference(model_inputs):
     mask = model_inputs.get('mask', None)
     init_image = model_inputs.get('init_image', None)
 
-    with open('./img.png','wb') as img_file:
-        img_file.write(base64.b64decode(init_image))
-
-    with open('./mask.png','wb') as mask_file:
-        mask_file.write(base64.b64decode(mask))
-
-    mask = './mask.png'
-    init_image = './img.png'
+    init_image = Image.open(BytesIO(base64.b64decode(init_image.encode('utf-8'))))
+    mask = Image.open(BytesIO(base64.b64decode(mask.encode('utf-8'))))
 
     extra_kwargs = {}
     if not prompt:
@@ -62,9 +56,9 @@ def inference(model_inputs):
         return {'message': 'No mask was provided'}
     if not init_image:
         raise ValueError("mask was provided without init_image")
-    init_image = Image.open(init_image).convert("RGB")
+    init_image = init_image.convert("RGB")
     extra_kwargs = {
-        "mask_image": Image.open(mask).convert("RGB").resize(init_image.size),
+        "mask_image": mask.convert("RGB").resize(init_image.size),
         "image": init_image,
         "width": width,
         "height": height,
